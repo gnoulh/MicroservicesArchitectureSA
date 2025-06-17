@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+    # PostgreSQL for Task Service
+    task-db:
+        image: postgres:15-alpine
+        environment:
+        - POSTGRES_DB=taskdb
+        - POSTGRES_USER=taskuser
+        - POSTGRES_PASSWORD=taskpass
+        volumes:
+        - task_db_data:/var/lib/postgresql/data
+        ports:
+        - "5433:5432"
+        # networks:
+        # - microservices-net
+    
+    task-service:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      image: todoapp/task-service:latest
+      ports:
+        - "8085:8085"
+      environment:
+        - SPRING_PROFILES_ACTIVE=docker
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://task-db:5432/taskdb
+        - SPRING_DATASOURCE_USERNAME=taskuser
+        - SPRING_DATASOURCE_PASSWORD=taskpass
+      depends_on:
+        - task-db
+      # networks:
+      #   - microservices-net
+
+volumes:
+  task_db_data:

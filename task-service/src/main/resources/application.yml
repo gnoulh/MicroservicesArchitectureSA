@@ -1,0 +1,56 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: task-service
+  
+  datasource:
+    url: jdbc:postgresql://task-db:5432/taskdb
+    username: taskuser
+    password: taskpass
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  
+  consul:
+    host: consul
+    port: 8500
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
+    
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: todouser
+    password: todopass123
+    virtual-host: todo_vhost
+    connection-timeout: 60000
+
+  service:
+    id: ${SERVICE_ID:task-service-1}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.todoapp.taskservice: DEBUG
+    org.springframework.web: DEBUG

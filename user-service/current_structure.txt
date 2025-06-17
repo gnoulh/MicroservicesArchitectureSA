@@ -1,0 +1,75 @@
+Folder PATH listing for volume DATA
+Volume serial number is 7CCA-1FFE
+D:.
+|   .gitignore
+|   .travis.yml
+|   current_structure.txt
+|   docker-compose-zipkin.yml
+|   docker-compose.yml
+|   Dockerfile
+|   Dockerfile-test
+|   glide.lock
+|   glide.yaml
+|   LICENSE
+|   main.go
+|   Makefile
+|   README.md
+|   
++---.github
+|   |   CONTRIBUTING.md
+|   |   ISSUE_TEMPLATE.md
+|   |   PULL_REQUEST_TEMPLATE.md
+|   |   
+|   \---workflows
+|           main.yaml
+|           
++---api
+|       endpoints.go
+|       endpoints_test.go
+|       middlewares.go
+|       middlewares_test.go
+|       service.go
+|       service_test.go
+|       transport.go
+|       
++---apispec
+|       hooks.js
+|       mock.json
+|       user.json
+|       
++---db
+|   |   db.go
+|   |   db_test.go
+|   |   
+|   \---mongodb
+|           mongodb.go
+|           mongodb_test.go
+|           
++---docker
+|   +---user
+|   |       Dockerfile-release
+|   |       
+|   \---user-db
+|       |   Dockerfile
+|       |   
+|       \---scripts
+|               accounts-create.js
+|               address-insert.js
+|               card-insert.js
+|               customer-insert.js
+|               mongo_create_insert.sh
+|               
++---model
++---scripts
+|       push.sh
+|       testcontainer.sh
+|       
+\---users
+        addresses.go
+        addresses_test.go
+        cards.go
+        cards_test.go
+        links.go
+        users.go
+        users_test.go
+        

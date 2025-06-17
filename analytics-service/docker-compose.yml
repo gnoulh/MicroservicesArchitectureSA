@@ -1,0 +1,60 @@
+version: '3.8'
+services:
+  influxdb:
+    image: influxdb:2.7
+    container_name: todo-influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=todopassword123
+      - DOCKER_INFLUXDB_INIT_ORG=todo-org
+      - DOCKER_INFLUXDB_INIT_BUCKET=todo-analytics
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=todo-analytics-token-12345
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+    # networks:
+    #   - todo-network
+
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: todo-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    # networks:
+    #   - todo-network
+    depends_on:
+      - influxdb
+
+  analytics-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: todo-analytics-service
+    ports:
+      - "8088:8088"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8088
+      - InfluxDB__Url=http://influxdb:8086
+      - InfluxDB__Token=todo-analytics-token-12345
+      - InfluxDB__Org=todo-org
+      - InfluxDB__Bucket=todo-analytics
+    # networks:
+    #   - todo-network
+    depends_on:
+      - influxdb
+
+volumes:
+  influxdb-data:
+  grafana-data:
+
+# networks:
+#   todo-network:
+#     external: true

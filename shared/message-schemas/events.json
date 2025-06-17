@@ -1,0 +1,68 @@
+{
+  "task.created": {
+    "eventId": "string",
+    "timestamp": "ISO8601",
+    "eventType": "task.created",
+    "version": "1.0",
+    "data": {
+      "taskId": "string",
+      "title": "string",
+      "description": "string",
+      "projectId": "string",
+      "assignedUserId": "string",
+      "priority": "string",
+      "dueDate": "ISO8601",
+      "createdBy": "string"
+    }
+  },
+  "task.updated": {
+    "eventId": "string",
+    "timestamp": "ISO8601",
+    "eventType": "task.updated",
+    "version": "1.0",
+    "data": {
+      "taskId": "string",
+      "changes": "object",
+      "previousState": "object",
+      "currentState": "object",
+      "updatedBy": "string"
+    }
+  },
+  "task.completed": {
+    "eventId": "string",
+    "timestamp": "ISO8601",
+    "eventType": "task.completed",
+    "version": "1.0",
+    "data": {
+      "taskId": "string",
+      "completedBy": "string",
+      "completionTime": "ISO8601",
+      "timeSpent": "number"
+    }
+  },
+  "project.created": {
+    "eventId": "string",
+    "timestamp": "ISO8601",
+    "eventType": "project.created",
+    "version": "1.0",
+    "data": {
+      "projectId": "string",
+      "name": "string",
+      "description": "string",
+      "ownerId": "string",
+      "members": ["string"]
+    }
+  },
+  "user.registered": {
+    "eventId": "string",
+    "timestamp": "ISO8601",
+    "eventType": "user.registered",
+    "version": "1.0",
+    "data": {
+      "userId": "string",
+      "username": "string",
+      "email": "string",
+      "registrationDate": "ISO8601"
+    }
+  }
+}
