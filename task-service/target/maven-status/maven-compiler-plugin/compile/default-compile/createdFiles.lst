@@ -1,0 +1,9 @@
+com\todoapp\taskservice\dto\TaskUpdateRequest.class
+com\todoapp\taskservice\controller\TaskController.class
+com\todoapp\taskservice\dto\TaskCreateRequest.class
+com\todoapp\taskservice\model\TaskStatus.class
+com\todoapp\taskservice\model\Task.class
+com\todoapp\taskservice\model\TaskPriority.class
+com\todoapp\taskservice\repository\TaskRepository.class
+com\todoapp\taskservice\service\TaskService.class
+com\todoapp\taskservice\TaskServiceApplication.class
